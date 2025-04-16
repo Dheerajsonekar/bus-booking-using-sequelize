@@ -26,6 +26,14 @@ app.use('/bookings', bookingRoutes);
 app.use('/payments', paymentRoutes);
 
 
+User.hasMany(Booking, {foreignKey: 'userId'});
+Booking.belongsTo(User, {foreignkey: 'userId'});
+
+Bus.hasMany(Booking, {foreignkey: 'busId'});
+Booking.belongsTo(Bus, {foreignkey: 'busId'});
+
+
+
 sequelize.sync()
   .then(() => {
     console.log('Database synced');
